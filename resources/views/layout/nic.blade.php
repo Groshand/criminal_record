@@ -14,7 +14,7 @@
                 <input class="form-control mr-sm-3" type="text" name="nic" placeholder="Search by NIC" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-            <h5><a href="{{route('logout')}}">Logout</a></h5>
+            <h5><a href="{{route('niclogout')}}">Logout</a></h5>
         </nav>
         <!--navbar end-->
         @yield('nic')

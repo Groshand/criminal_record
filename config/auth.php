@@ -53,6 +53,10 @@ return [
             'driver' => 'session',
             'provider' => 'nics',
         ],
+        'cout' => [
+            'driver' => 'session',
+            'provider' => 'couts',
+        ],
 
     ],
 
@@ -86,6 +90,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Nic::class,
         ],
+        'couts' => [
+            'driver' => 'eloquent',
+            'model' => App\Cout::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -116,6 +124,11 @@ return [
         ],
         'polices' => [
             'provider' => 'polices',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'couts' => [
+            'provider' => 'couts',
             'table' => 'password_resets',
             'expire' => 60,
         ],

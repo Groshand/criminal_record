@@ -145,7 +145,7 @@
                             @foreach($offense as $ofns)
                                 @if($ofns->userId==$user->id)
                                     <div >
-                                        <label >{{$ofns->discription}}</label>
+                                        <label >{{$ofns->pDiscription}}</label>
                                     </div>
                                 @endif
                             @endforeach

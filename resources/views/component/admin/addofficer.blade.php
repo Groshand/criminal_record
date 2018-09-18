@@ -29,6 +29,21 @@
                 <label for="password">Area</label>
                 <input type="text" class="form-control" name="area"  placeholder="Enter area">
             </div>
+            <div class="form-group">
+                <label for="gender">Officer</label>
+                <div class="form-control">
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="cp" value="police">Police
+                        </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="cp" value="cout">Cout
+                        </label>
+                    </div>
+                </div>
+            </div>
             <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Add</button>
         </form>
     </div>

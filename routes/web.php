@@ -32,6 +32,10 @@ Route::post('policelogin',[
     'uses'=>'PoliceController@policelogin',
     'as'=>'policelogin'
 ]);
+Route::get('plogout',[
+    'uses'=>'PoliceController@plogout',
+    'as'=>'plogout'
+]);
 Route::post('searchuserfrompolice',[
     'uses'=>'UserController@searchuserfrompolice',
     'as'=>'searchuserfrompolice'
@@ -43,6 +47,53 @@ Route::post('addoffense/{id}',[
     'uses'=>'OffenseController@addoffense',
     'as'=>'addoffense'
 ])->middleware('auth:police');
+Route::post('searchpolice',[
+    'uses'=>'PoliceController@searchpolice',
+    'as'=>'searchpolice'
+])->middleware('auth:police');
+Route::get('owneprofile',[
+    'uses'=>'PoliceController@owneprofile',
+    'as'=>'owneprofile'
+])->middleware('auth:police');
+Route::get('palloffense',[
+    'uses'=>'PoliceController@palloffense',
+    'as'=>'palloffense'
+])->middleware('auth:police');
+
+
+
+//cout
+Route::get('coutlogin', function () {
+    return view('component/cout/coutlogin');
+});
+Route::post('coutlogin',[
+    'uses'=>'CoutController@coutlogin',
+    'as'=>'coutlogin'
+]);
+Route::get('clogout',[
+    'uses'=>'CoutController@clogout',
+    'as'=>'clogout'
+]);
+Route::post('searchuserfromcout',[
+    'uses'=>'CoutController@searchuserfromcout',
+    'as'=>'searchuserfromcout'
+])->middleware('auth:cout');
+Route::get('getoffense/{id}',[
+    'uses'=>'OffenseController@getoffense',
+    'as'=>'getoffense'
+])->middleware('auth:cout');
+Route::post('acceptoffense/{id}',[
+    'uses'=>'OffenseController@acceptoffense',
+    'as'=>'acceptoffense'
+])->middleware('auth:cout');
+Route::get('cout', function () {
+    return view('layout/cout');
+});
+Route::get('cowneprofile',[
+    'uses'=>'CoutController@cowneprofile',
+    'as'=>'cowneprofile'
+])->middleware('auth:cout');
+
 
 
 
@@ -51,9 +102,9 @@ Route::post('userlogin',[
     'uses'=>'UserController@login',
     'as'=>'userlogin'
 ]);
-Route::get('logout',[
-    'uses'=>'UserController@logout',
-    'as'=>'logout'
+Route::get('ulogout',[
+    'uses'=>'UserController@ulogout',
+    'as'=>'ulogout'
 ]);
 Route::get('userlogin', function () {
     return view('component/user/userlogin');
@@ -62,6 +113,24 @@ Route::get('login',[
     'uses'=>'SessionController@login',
     'as'=>'login'
 ]);
+Route::get('uprofile',[
+    'uses'=>'UserController@userprofile',
+    'as'=>'uprofile'
+])->middleware('auth:web');
+Route::get('uoffense/{id}',[
+    'uses'=>'OffenseController@uoffense',
+    'as'=>'uoffense'
+])->middleware('auth:web');
+Route::get('alloffense',[
+    'uses'=>'OffenseController@alloffense',
+    'as'=>'alloffense'
+]);
+Route::post('searchoffense',[
+    'uses'=>'OffenseController@searchoffense',
+    'as'=>'searchoffense'
+])->middleware('auth:web');
+
+
 
 //admin
 Route::get('admin', function () {

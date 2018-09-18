@@ -41,7 +41,7 @@ class UserController extends Controller
 
         $saved=$user->save();
         if($saved){
-            return view('component/nic/adduser')->with('message','New user Added success');
+            return redirect()->back()->with('message','New user Added success');
         }
         else{
             return redirect()->back()->with('message','Unsuccess');
@@ -64,24 +64,40 @@ class UserController extends Controller
         if($user){
             return view('component/police/userprofile',['user'=>$user,'data'=>$data,'offense'=>$offense]);
         }else{
-            return redirect()->back();
+            return view('component/police/searchuser');
         }
 
     }
     public function login(Request $request){
+        $count=0;
         if(Auth::guard('web')->attempt(['email'=>$request->email,'password'=>$request->password])){
-//dd($data);'id'=>$request->id,'password'=>$request->password
-            return view('component/user/userprofile');
-        }//else{
-           // return redirect()->back()->with('message','Not login successfully');
-        //}
+            $offense=DB::table('offenses')->get();
+            foreach ($offense as $ofns){
+                if ($ofns->userId==Auth::user()->id && $ofns->notification==1){
+                    $count=$count+1;
+                }
+            }
+           session()->put('notification',$count);
+           return $this->userprofile();
+        }else{
+            return redirect()->back()->with('message','Not login successfully');
+        }
     }
-    public function logout(){
+    public function ulogout(){
         Auth::logout();
-        session::flush();
+
+        if(session()->has('notification')) {
+            session()->forget('notification');
+        }//session::flush();
         return view('component/user/userlogin');
     }
-    public function niclog(Request $request){
-
+    public function userprofile(){
+        $user=User::find(Auth::user()->id);
+        $offense=DB::table('offenses')->get();
+        if ($user && $offense){
+            return view('component/user/userprofile',['user'=>$user,'offense'=>$offense]);
+        }else{
+            return redirect()->back();
+        }
     }
 }

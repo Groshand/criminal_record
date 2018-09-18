@@ -1,5 +1,5 @@
-@extends('layout.user')
-@section('user')
+@extends('layout.cout')
+@section('cout')
     <h3>{{$user->name}}</h3>
     <!--form start-->
     <div class="bg-light container">
@@ -100,8 +100,8 @@
                     <div class="modal-body">
                         @if(count($offense)>0)
                             @foreach($offense as $ofns)
-                                @if($ofns->userId==$user->id && $ofns->notification==1)
-                                    <a href="{{route('uoffense',['id'=>$ofns->id])}}">
+                                @if($ofns->userId==$user->id && $ofns->accept==0)
+                                    <a href="{{route('getoffense',['id'=>$ofns->id])}}">
                                         <div >
                                             <h6>{{$ofns->id}}</h6>
                                             <label >{{$ofns->pDiscription}}</label>
@@ -128,12 +128,13 @@
                         @if(count($offense)>0)
                             @foreach($offense as $ofns)
                                 @if($ofns->userId==$user->id)
-                                    <a href="{{route('uoffense',['id'=>$ofns->id])}}">
-                                        <div class=" @if($ofns->accept==2) bg-warning @elseif($ofns->accept==1) bg-danger @endif">
+
+                                        <div class=" @if($ofns->accept==2) bg-warning @endif">
                                             <h6>{{$ofns->id}}</h6>
                                             <label >{{$ofns->pDiscription}}</label>
                                         </div>
-                                    </a>
+
+
                                 @endif
                             @endforeach
                         @endif

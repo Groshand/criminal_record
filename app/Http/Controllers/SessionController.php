@@ -20,7 +20,7 @@ class SessionController extends Controller
     }
     public function niclogout(){
         if(session()->has('name')=='nicadmin'){
-            session()->forget('name');
+                session()->forget('name');
             return view('component/nic/login');
         }
         else{

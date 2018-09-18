@@ -15,11 +15,14 @@ class CreateOffensesTable extends Migration
     {
         Schema::create('offenses', function (Blueprint $table) {
             $table->increments('id')->unique();
-            $table->string('discription');
+            $table->string('pDiscription');
+            $table->string('cDiscription');
             $table->integer('pOffenseId');
             $table->integer('policeId');
             $table->integer('coutOId');
             $table->integer('userId');
+            $table->integer('notification');
+            $table->integer('accept');
             $table->rememberToken();
             $table->timestamps();
         });
