@@ -56,9 +56,16 @@ Route::get('owneprofile',[
     'as'=>'owneprofile'
 ])->middleware('auth:police');
 Route::get('palloffense',[
-    'uses'=>'PoliceController@palloffense',
+    'uses'=>'OffenseController@palloffense',
     'as'=>'palloffense'
 ])->middleware('auth:police');
+Route::get('poffense/{id}',[
+    'uses'=>'OffenseController@poffense',
+    'as'=>'poffense'
+])->middleware('auth:police');
+
+
+
 
 
 
@@ -93,6 +100,14 @@ Route::get('cowneprofile',[
     'uses'=>'CoutController@cowneprofile',
     'as'=>'cowneprofile'
 ])->middleware('auth:cout');
+Route::get('calloffense',[
+    'uses'=>'OffenseController@calloffense',
+    'as'=>'calloffense'
+])->middleware('auth:cout');
+Route::get('coffense/{id}',[
+    'uses'=>'OffenseController@coffense',
+    'as'=>'coffense'
+])->middleware('auth:cout');
 
 
 
@@ -121,10 +136,10 @@ Route::get('uoffense/{id}',[
     'uses'=>'OffenseController@uoffense',
     'as'=>'uoffense'
 ])->middleware('auth:web');
-Route::get('alloffense',[
-    'uses'=>'OffenseController@alloffense',
-    'as'=>'alloffense'
-]);
+Route::get('ualloffense',[
+    'uses'=>'OffenseController@ualloffense',
+    'as'=>'ualloffense'
+])->middleware('auth:web');
 Route::post('searchoffense',[
     'uses'=>'OffenseController@searchoffense',
     'as'=>'searchoffense'

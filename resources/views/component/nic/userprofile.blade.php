@@ -2,7 +2,7 @@
 @section('nic')
     <h3>{{$user->name}}</h3>
     <!--form start-->
-    <div class="bg-light container">
+    <div class=" container">
         <div class="row">
             <div class="col-md-8">
                 <form>

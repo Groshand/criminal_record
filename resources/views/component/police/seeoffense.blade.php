@@ -1,14 +1,15 @@
-@extends('layout.cout')
-@section('cout')
-    @if(session()->has('message'))
-        <div>
-            {{session()->get('message')}}
-        </div>
-    @endif
-    @if($user && $offense)
-        <h3>{{$user->name}}</h3>
+@extends('layout.police')
+@section('police')
 
-        <div class="bg-light container">
+
+        <div class="container">
+            @if(session()->has('message'))
+                <div>
+                    {{session()->get('message')}}
+                </div>
+            @endif
+            @if($user && $offense)
+                <h3>{{$user->name}}</h3>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -52,7 +53,6 @@
                 </div>
             </div>
             <hr><h5>Offense Details of {{$user->name}}</h5>
-            <form action="{{route('acceptoffense',['id'=>$offense->id])}}" method="post">{{csrf_field()}}
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -67,22 +67,7 @@
                             <label for="gender">Catogory of Offense</label>
                             @foreach($data as $data1)
                                 @if($data1->id==$offense->pOffenseId)
-                                    <div class="form-control">
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="types" value="{{$data1->id}}" @if($data1->type=='Antisocial behaviour')
-                                                checked
-                                                        @endif>Antisocial behaviour
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="types" value="{{$data1->id}}" @if($data1->type=='Arson')
-                                                checked
-                                                        @endif>Arson
-                                            </label>
-                                        </div>
-                                    </div>
+                                    <label class="form-control">{{$data1->type}}</label>
                                 @endif
                             @endforeach
                         </div>
@@ -94,35 +79,16 @@
                             <label >Police Officer Discription</label>
                             <p class="" >{{$offense->pDiscription}}</p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group">@if($offense->cDiscription)
                             <label >Cout Officer Discription</label>
-                            <textarea class="form-control" name="discription" cols="30" rows="10" >{{$offense->cDiscription}}</textarea>
+                            <p class="">{{$offense->cDiscription}}</p>@endif
                         </div>
                     </div>
-                </div>
-                <div>
-                <div class="form-group" >
-                    <label >Offense Accept Or Reject</label>
-                    <div class="form-control">
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="accept" value="1">Accept
-                            </label>
-                        </div>
-                        <div class="form-check-inline">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="accept" value="2">Reject
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary col-md-2 mx-auto">Update</button>
                 </div>
             </div>
-            </form>
+            @endif
+
         </div>
-    @endif
 @endsection
 
 

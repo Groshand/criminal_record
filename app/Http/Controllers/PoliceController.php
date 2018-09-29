@@ -36,6 +36,14 @@ class PoliceController extends Controller
     }
     public function policelogin(Request $request){
         if(Auth::guard('police')->attempt(['id'=>$request->id,'password'=>$request->password])){
+            $count=0;
+            $offense=DB::table('offenses')->get();
+            foreach ($offense as $ofns){
+                if ($ofns->accept==2){
+                    $count=$count+1;
+                }
+            }
+            session()->put('pnotification',$count);
             return view('component/police/searchuser');
         }else{
             return redirect()->back()->with('message','Incorrect Password or ID');
@@ -58,9 +66,12 @@ class PoliceController extends Controller
     public function owneprofile(){
         $police=Police::find(Auth::user()->id);
         $user=User::find($police->nic);
-        $offense=DB::table('offenses')->get();//dd($offense);
-        if($user && $police && $offense){
-            return view('component/police/owneprofile',['user'=>$user,'police'=>$police,'offense'=>$offense]);
+        $offense=DB::table('offenses')->get();
+        $user12=DB::table('users')->get();
+        $data=DB::table('Predefinedoffense')->get();
+//dd($offense);
+        if($user && $police && $offense && $user12 && $data){
+            return view('component/police/owneprofile',['user'=>$user,'data'=>$data,'user12'=>$user12,'police'=>$police,'offense'=>$offense]);
         }else{
             return redirect()->back();
         }
@@ -68,16 +79,8 @@ class PoliceController extends Controller
     }
     public function plogout(){
         Auth::logout();
-        session::flush();
+
         return view('component/police/policelogin');
     }
-    public function palloffense(){
-        $offense=DB::table('offenses')->get();
-        if ($offense){
-            return view('component/police/alloffense',['offense'=>$offense]);
-        }
-        else{
-            return redirect()->back();
-        }
-    }
+
 }

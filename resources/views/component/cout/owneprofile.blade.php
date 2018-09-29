@@ -3,7 +3,7 @@
 @section('cout')
     <h3>{{$user->name}}</h3>
     <!--form start-->
-    <div class="bg-light container">
+    <div class="container">
         <div class="row">
             <button type="button" class="btn btn-info btn-lg btn-group" data-toggle="modal" data-target="#myModal1">Your Added All Offenses</button>
             <button type="button" class="btn btn-info btn-lg btn-group" data-toggle="modal" data-target="#myModal2">Accept Offenses</button>

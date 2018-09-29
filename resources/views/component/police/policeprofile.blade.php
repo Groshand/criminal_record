@@ -1,9 +1,9 @@
 @extends('layout.police')
 
 @section('police')
-    <h3>{{$user->name}}</h3>
+    <h3  class="my-3">{{$user->name}}</h3>
     <!--form start-->
-    <div class="bg-light container">
+    <div class=" container  border border-light py-5 rounded">
         <div class="row">
             <div class="col-md-8">
                 @if($user)

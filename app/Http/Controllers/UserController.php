@@ -29,6 +29,8 @@ class UserController extends Controller
         $user->job=$request->input('job');
         $user->address=$request->input('address');
         $user->phoneNo=$request->input('phoneno');
+        $user->password = rand();
+        mail($user->email,'password',$user->password);dd($user->password);
         //start image upload
             $imagename=$request->input('nic');
             $filename= $imagename.'.jpg';//$file->getClientOriginalName();
@@ -80,7 +82,7 @@ class UserController extends Controller
            session()->put('notification',$count);
            return $this->userprofile();
         }else{
-            return redirect()->back()->with('message','Not login successfully');
+            return redirect()->back()->with('message','Enter Correct Email Or Password');
         }
     }
     public function ulogout(){

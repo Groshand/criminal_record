@@ -10,7 +10,7 @@
     </h3>
     <h3>Add Person</h3>
     <!--form start-->
-    <div class="bg-light container">
+    <div class=" container">
         <form method="post" action="{{route('adduser')}}" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="form-group">

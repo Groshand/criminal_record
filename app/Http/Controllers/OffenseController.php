@@ -8,7 +8,6 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Object_;
 use Redirect;
 use Input;
 
@@ -48,9 +47,15 @@ class OffenseController extends Controller
         $discription=$request->input('discription');
         $poffenseid=$request->input('types');
         $accept=$request->input('accept');
+        $offense=Offense::find($id);
         $accept=DB::table('offenses')
             ->where('id',$id)
             ->update(['pOffenseId'=>$poffenseid,'cDiscription'=>$discription,'accept'=>$accept,'coutOId'=>Auth::user()->id]);
+        if ($offense->accept!='0' && session()->get('cnotification')){
+                $count=session()->get('cnotification');
+                $count=$count-1;
+                session()->put('cnotification',$count);
+        }
         if ($accept){
             return redirect()->back();
         }
@@ -62,7 +67,7 @@ class OffenseController extends Controller
 
         $data=DB::table('Predefinedoffense')->get();
         $offense=Offense::find($id);
-       if($offense->notification=='1'){
+        if($offense->notification=='1'){
            $offense->notification='0';
            $offense->save();
            if(session()->get('notification')){
@@ -83,7 +88,6 @@ class OffenseController extends Controller
         }else{
         }*/
 
-
         if ($offense && $data){
             return view('component/user/offense',['offense'=>$offense,'data'=>$data]);
         }
@@ -91,19 +95,63 @@ class OffenseController extends Controller
             return redirect()->back();
         }
     }
+    public function coffense($id){
+            $data=DB::table('Predefinedoffense')->get();
+            $offense=Offense::find($id);
+            $user=User::find($offense->userId);
+            if ($offense && $data){
+                return view('component/cout/acceptoffense',['offense'=>$offense,'data'=>$data,'user'=>$user]);
+            }
+            else{
+                return redirect()->back();
+            }
+
+    }
+    public function poffense($id){
+        $data=DB::table('Predefinedoffense')->get();
+        $offense=Offense::find($id);
+        $user=User::find($offense->userId);
+        if ($offense && $data && $user){
+            return view('component/police/seeoffense',['offense'=>$offense,'data'=>$data,'user'=>$user]);
+        }
+        else{
+            return redirect()->back();
+        }
+
+    }
     public function searchoffense(Request $request){
         return $this->uoffense($request->input('id'));
     }
-
-    public function alloffense(){
+    public function calloffense(){
         $offense=DB::table('offenses')->get();
         if ($offense){
-            if(Auth::guard('cout')){
-                return view('component/cout/alloffense',['offense'=>$offense]);
-            }
-            else{
-                return view('component/user/alloffense',['offense'=>$offense]);
-            }
+            return view('component/cout/alloffense',['offense'=>$offense]);
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+    public function ualloffense(){
+        $offense=DB::table('offenses')->get();
+        if ($offense){
+            return view('component/user/alloffense',['offense'=>$offense]);
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+    public function palloffense(){
+        $offense=DB::table('offenses')->get();
+        $users=DB::table('users')->get();
+        $data=DB::table('Predefinedoffense')->get();
+
+        if(session()->get('pnotification')){
+           session()->put('pnotification',0);
+
+        }
+
+        if ($offense && $users && $data){
+            return view('component/police/alloffense',['offense'=>$offense,'users'=>$users,'data'=>$data]);
         }
         else{
             return redirect()->back();

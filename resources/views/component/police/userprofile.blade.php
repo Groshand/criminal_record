@@ -1,95 +1,90 @@
 @extends('layout.police')
 @section('police')
-    <h3>{{$user->name}}</h3>
     <!--form start-->
-    <div class="bg-light container">
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg btn-group" data-toggle="modal" data-target="#myModal1">Profile</button>
-        <button type="button" class="btn btn-info btn-lg btn-group" data-toggle="modal" data-target="#myModal2">Offense</button>
-        <button type="button" class="btn btn-info btn-lg btn-group" data-toggle="modal" data-target="#myModal3">Add Offense</button>
+    <div class="container">
+        <h3>{{$user->name}}</h3>
+
+        <div class="container row ">
+            <button type="button" class="btn btn-info col-md-4 border border-light btn-lg" data-toggle="modal" data-target="#myModal1">Profile</button>
+            <button type="button" class="btn btn-info col-md-4 border border-light btn-lg" data-toggle="modal" data-target="#myModal3">Offenses</button>
+            <button type="button" class="btn btn-info col-md-4 border border-light btn-lg" data-toggle="modal" data-target="#myModal2">Add Offense</button>
+
+
+        </div>
+
+     <!--Images-->
+        <div class="row container my-4 border border-light py-2 rounded">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nic">Profile Image </label>
+                    <img src="images/user/{{$user->profileImage}}" alt="" width="100%" height="100%" class="img-thumbnail">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nic">FingerPrint </label>
+                    <img src="images/fingerprint/{{$user->fingerPrint}}" alt="" width="100%" height="100%" class="img-thumbnail">
+                </div>
+            </div>
+
+        </div>
+
 
         <div class="modal fade" id="myModal1" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4>Personal Details</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
 
-                        <div class="row">
-                            <div class="col-md-8">
-                                <form>
-
-                                    @if($user)
-
-                                        <div class="form-group">
-                                            <label for="nic">NIC No </label>
-                                            <input type="text" class="form-control" id=""  placeholder="" value="{{$user->id}}">
+                        <div class="container px-5">
+                                @if($user)
+                                        <div class="form-group row">
+                                            <label class="col-md-4">NIC No </label>
+                                            <label class="form-control col-md-8">{{$user->id}}</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="name">Full Name</label>
-                                            <input type="text" class="form-control" id=""  value="{{$user->name}}">
+                                        <div class="form-group row">
+                                            <label class="col-md-4">Full Name</label>
+                                            <label class="form-control col-md-8">{{$user->name}}</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="oname">Other Names</label>
-                                            <input type="text" class="form-control" id=""  value="{{$user->otherName}}">
+                                        <div class="form-group row">
+                                            <label class="col-md-4">Other Names</label>
+                                            <label class="form-control col-md-8">{{$user->otherName}}</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="gender">Gender</label>
-                                            <div class="form-control">
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input" name="gender" value="male" @if($user->gender=='male')
-                                                        checked
-                                                                @endif>Male
-                                                    </label>
-                                                </div>
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input" name="gender" value="female" @if($user->gender=='female')
-                                                        checked
-                                                                @endif>Female
-                                                    </label>
-                                                </div>
-                                            </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-4">Gender</label>
+                                            <label class="form-control col-md-8">{{$user->gender}}</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="birthday">Birthday</label>
-                                            <input type="date" class="form-control" value="{{$user->bDay}}" >
+                                        <div class="form-group row">
+                                            <label class="col-md-4">Birthday</label>
+                                            <label class="form-control col-md-8">{{$user->bDay}}</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="address">Address</label>
-                                            <input type="text" class="form-control" value="{{$user->address}}">
+                                        <div class="form-group row">
+                                            <label class="col-md-4">Address</label>
+                                            <label class="form-control col-md-8">{{$user->address}}</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="phoneno">Phone No</label>
-                                            <input type="text" class="form-control" value="{{$user->phoneNo}}">
+                                        <div class="form-group row">
+                                            <label class="col-md-4">Phone No</label>
+                                            <label class="form-control col-md-8">{{$user->phoneNo}}</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="email">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$user->email}}">
+                                        <div class="form-group row">
+                                            <label class="col-md-4">Email address</label>
+                                            <label class="form-control col-md-8">{{$user->email}}</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="job">Job</label>
-                                            <input type="text" class="form-control" value="{{$user->job}}">
+                                        <div class="form-group row">
+                                            <label class="col-md-4">Job</label>
+                                            <label class="form-control col-md-8">{{$user->job}}</label>
                                         </div>
 
-                                        <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Submit</button>
 
                                     @endif
-                                </form>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="nic">Image </label>
-                                    <img src="images/user/{{$user->profileImage}}" alt="" width="100%" height="100%" class="img-thumbnail">
-                                </div>
-                            </div>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <a href="#" data-dismiss="modal" class="btn">Close</a>
                     </div>
                 </div>
             </div>
@@ -98,9 +93,8 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">ADD OFFENSE</h4>
-
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <form method="post" action="{{route('addoffense',['id'=>$user->id] )}}">
