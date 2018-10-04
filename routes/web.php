@@ -36,6 +36,10 @@ Route::get('plogout',[
     'uses'=>'PoliceController@plogout',
     'as'=>'plogout'
 ]);
+Route::post('searchbyfingerprint',[
+    'uses'=>'UserController@searchbyfingerprint',
+    'as'=>'searchbyfingerprint'
+])->middleware('auth:police');
 Route::post('searchuserfrompolice',[
     'uses'=>'UserController@searchuserfrompolice',
     'as'=>'searchuserfrompolice'

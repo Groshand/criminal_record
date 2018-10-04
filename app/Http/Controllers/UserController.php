@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Redirect;
 use Input;
 
@@ -29,8 +30,8 @@ class UserController extends Controller
         $user->job=$request->input('job');
         $user->address=$request->input('address');
         $user->phoneNo=$request->input('phoneno');
-        $user->password = rand();
-        mail($user->email,'password',$user->password);dd($user->password);
+        $user->password =123; //rand();
+       // mail($user->email,'password',$user->password);dd($user->password);
         //start image upload
             $imagename=$request->input('nic');
             $filename= $imagename.'.jpg';//$file->getClientOriginalName();
@@ -70,6 +71,30 @@ class UserController extends Controller
         }
 
     }
+    public function searchbyfingerprint(Request $request){
+        $request->file('im')->move(base_path().'/public/images/input/', 'image.jpg');
+        $img=new User();
+        $data=$img->python();
+      //  Storage::delete('/public/images/input/image.jpg');
+        if($data!=null){
+            $data=preg_replace('/[^0-9]/','',$data);
+
+            if ($data=='12121212') {
+                return redirect()->back()->with('message', 'Enter Correct Finger Print');
+            }
+            else{
+                $user=User::find($data);
+                $offense=DB::table('offenses')->get();
+                $data=DB::table('Predefinedoffense')->get();
+                return view('component/police/userprofile',['user'=>$user,'data'=>$data,'offense'=>$offense]);
+            }
+
+        }else{
+            return redirect()->back()->with('message', 'Enter Correct Finger Print');
+        }
+
+
+}
     public function login(Request $request){
         $count=0;
         if(Auth::guard('web')->attempt(['email'=>$request->email,'password'=>$request->password])){

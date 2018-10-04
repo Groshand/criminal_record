@@ -1,7 +1,7 @@
 @extends('layout.user')
 
 @section('user')
-    <div class="container  bg-dark" >
+    <div class="container  " >
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">

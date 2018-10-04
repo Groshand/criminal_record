@@ -10,4 +10,11 @@ class User extends Model implements Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
     protected $guard='web';
+
+
+    public function python(){
+        $command = escapeshellcmd("E:\laravel\criminal_record\public\python/find.py");
+        $output = shell_exec($command);
+        return $output;
+    }
 }

@@ -67,15 +67,7 @@ class OffenseController extends Controller
 
         $data=DB::table('Predefinedoffense')->get();
         $offense=Offense::find($id);
-        if($offense->notification=='1'){
-           $offense->notification='0';
-           $offense->save();
-           if(session()->get('notification')){
-               $count=session()->get('notification');
-               $count=$count-1;
-               session()->put('notification',$count);
-           }
-       }
+
        /* if ($offense->notification=='1'){
             DB::table('offenses')
                 ->where('id',$id)
@@ -133,8 +125,20 @@ class OffenseController extends Controller
     }
     public function ualloffense(){
         $offense=DB::table('offenses')->get();
-        if ($offense){
-            return view('component/user/alloffense',['offense'=>$offense]);
+        $user=User::find(Auth::user()->id);
+        $data=DB::table('Predefinedoffense')->get();
+
+        if(session()->get('notification')>0){
+            $notification=DB::table('offenses')
+                ->where('userId',Auth::user()->id)
+                ->update(['notification'=>0]);
+
+            session()->put('notification',0);
+
+        }
+
+        if ($offense && $user){
+            return view('component/user/alloffense',['offense'=>$offense,'user'=>$user,'data'=>$data]);
         }
         else{
             return redirect()->back();
