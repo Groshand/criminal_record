@@ -35,7 +35,7 @@
                     <div class="navbar-nav"  >
                         <form class="form-inline" action="{{route('searchuser')}}" method="post" >{{csrf_field()}}
                             <input class="form-control w-80" type="text" name="nic" placeholder="Search By NIC" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </div>
                 </ul>

@@ -29,7 +29,7 @@
                                     @if($ofns->policeId==Auth::user()->id)
                                         @foreach($user12 as $user2)
                                             @if($ofns->userId==$user2->id)
-                                                <button data-toggle="modal" data-target="#aa{{$ofns->id}}" class="col-md-12 btn btn-outline-info border-primary">
+                                                <button data-toggle="modal" data-target="#aa{{$ofns->id}}" class="col-md-12 btn @if($ofns->accept==0)btn-outline-success @elseif($ofns->accept==2)btn-outline-danger @elseif($ofns->accept==1) btn-outline-primary @endif border-primary">
 
                                                      <div class="row">
                                                 <div class="col-md-3">
@@ -78,7 +78,7 @@
                                     @if($ofns->policeId==Auth::user()->id && $ofns->accept==1)
                                         @foreach($user12 as $user2)
                                             @if($ofns->userId==$user2->id)
-                                                <button data-toggle="modal" data-target="#aa{{$ofns->id}}" class="col-md-12 btn btn-outline-info border-primary">
+                                                <button data-toggle="modal" data-target="#aa{{$ofns->id}}" class="col-md-12 btn @if($ofns->accept==0)btn-outline-success @elseif($ofns->accept==2)btn-outline-danger @elseif($ofns->accept==1) btn-outline-primary @endif border-primary">
 
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -127,7 +127,7 @@
                                     @if($ofns->policeId==Auth::user()->id && $ofns->accept==2)
                                         @foreach($user12 as $user2)
                                             @if($ofns->userId==$user2->id)
-                                                <button data-toggle="modal" data-target="#aa{{$ofns->id}}" class="col-md-12 btn btn-outline-info border-primary">
+                                                <button data-toggle="modal" data-target="#aa{{$ofns->id}}" class="col-md-12 btn @if($ofns->accept==0)btn-outline-success @elseif($ofns->accept==2)btn-outline-danger @elseif($ofns->accept==1) btn-outline-primary @endif border-primary">
 
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -176,7 +176,7 @@
                                     @if($ofns->policeId==Auth::user()->id && $ofns->accept==0)
                                         @foreach($user12 as $user2)
                                             @if($ofns->userId==$user2->id)
-                                                <button data-toggle="modal" data-target="#aa{{$ofns->id}}" class="col-md-12 btn btn-outline-info border-primary">
+                                                <button data-toggle="modal" data-target="#aa{{$ofns->id}}" class="col-md-12 btn @if($ofns->accept==0)btn-outline-success @elseif($ofns->accept==2)btn-outline-danger @elseif($ofns->accept==1) btn-outline-primary @endif border-primary">
 
                                                     <div class="row">
                                                         <div class="col-md-3">

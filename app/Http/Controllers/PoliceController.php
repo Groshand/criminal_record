@@ -22,7 +22,7 @@ class PoliceController extends Controller
         }
         $officer->nic=$request->input('nic');
         $officer->id=$request->input('id');
-        $officer->password=bcrypt($request->input('password'));
+        $officer->password=bcrypt(147);
         $officer->policeStation=$request->input('area');
 
         $saved=$officer->save();
@@ -39,12 +39,12 @@ class PoliceController extends Controller
             $count=0;
             $offense=DB::table('offenses')->get();
             foreach ($offense as $ofns){
-                if ($ofns->accept==2){
+                if ($ofns->accept==2 ){
                     $count=$count+1;
                 }
             }
             session()->put('pnotification',$count);
-            return view('component/police/searchuser');
+            return view('component/police/home');
         }else{
             return redirect()->back()->with('message','Incorrect Password or ID');
         }
@@ -79,8 +79,9 @@ class PoliceController extends Controller
     }
     public function plogout(){
         Auth::logout();
+        Session::flush();
+        return redirect()->route('policelogin');
 
-        return view('component/police/policelogin');
     }
 
 }

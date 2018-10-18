@@ -19,6 +19,8 @@ class CreatePoliceTable extends Migration
             $table->string('password');
             $table->string('policeStation');
             $table->timestamps();
+            $table->rememberToken();
+
         });
     }
 

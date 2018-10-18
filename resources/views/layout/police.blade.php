@@ -7,21 +7,27 @@
 
             <!--navbar start-->
             <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Police Department</a>
+                <a class="navbar-brand" href="phome">Find The Criminal</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Home
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="searchuserfrompolice" >
                                 Add Offense
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="paalloffense" >
+                                All Offenses
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pactnlow" >
+                                Acts & Laws
                             </a>
                         </li>
                         <li class="nav-item">
@@ -48,14 +54,14 @@
                         <div class="navbar-nav"  >
                             <form class="form-inline" action="{{route('searchpolice')}}" method="post" >{{csrf_field()}}
                                 <input class="form-control w-80" type="text" name="id" placeholder="Search By Officer ID" aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
                     </ul>
 
                     <ul class="navbar-nav my-1 ">
                         <li class="nav-item">
-                            <a class="nav-link " href="{{route('palloffense')}}">
+                            <a class="nav-link " href="{{route('palloffense' )}}">
                                 <i class="fa fa-bell-o">
                                     @if(Session::has('pnotification'))
                                     <span class="badge badge-danger">{{Session::get('pnotification')}}</span>

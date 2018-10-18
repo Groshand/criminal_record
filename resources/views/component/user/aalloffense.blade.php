@@ -1,7 +1,7 @@
 @extends('layout.user')
 @section('user')
     <div class="container border border-light px-5 pt-2 pb-5 rounded mt-md-3">
-        <h3>ALL Notifications</h3>
+        <h3>ALL Offenses</h3>
         <!--shapes-->
         <div class="row p-3">
             <div class="form-group col-md-3">
@@ -19,7 +19,7 @@
         </div>
         @if(count($offense)>0)
             @foreach($offense as $ofns)
-                @if($ofns->userId==$user->id && $ofns->notification==1)
+                @if($ofns->userId==$user->id )
                     <button data-toggle="modal" data-target="#ab{{$ofns->id}}" class="col-md-12 btn border-secondary  @if($ofns->accept==0)btn-outline-success @elseif($ofns->accept==1)btn-outline-danger @elseif($ofns->accept==2) btn-outline-primary @endif" style="border-style:solid;
     border-width:thick;">
                         <div class="row ">
@@ -119,11 +119,11 @@
                     </div>
 
                 @endif
-
+                
             @endforeach
         @else
             <div class="bg-success">
-                <h6>Your Have No notifications</h6>
+                <h6>Your Have No Offenses</h6>
             </div>
         @endif
     </div>

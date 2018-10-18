@@ -1,6 +1,6 @@
-@extends('layout.user')
+@extends('layout.cout')
 
-@section('user')
+@section('cout')
     <div class="container border border-light px-5 py-3 rounded mt-md-3 " >
         <div class="row">
             <div class="col-md-6">

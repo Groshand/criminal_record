@@ -1,7 +1,7 @@
 @extends('layout.police')
 @section('police')
     <div class="container border border-light px-5 pt-2 pb-5 rounded mt-md-3">
-        <h3>ALL Notifications</h3>
+        <h3>ALL Offenses</h3>
         <!--shapes-->
         <div class="row p-3">
             <div class="form-group col-md-3">
@@ -21,7 +21,7 @@
             @if(count($offense)>0 )
                 @foreach($offense as $ofns)
                         @foreach($users as $user)
-                            @if($ofns->userId==$user->id &&  $ofns->accept==2 && $ofns->policeId==Auth::user()->id)
+                            @if($ofns->userId==$user->id )
                                 <button data-toggle="modal" data-target="#a{{$ofns->id}}" class="col-md-12 btn border-secondary  @if($ofns->accept==0)btn-outline-success @elseif($ofns->accept==2)btn-outline-danger @elseif($ofns->accept==1) btn-outline-primary @endif" style="border-style:solid;
     border-width:thick;">
                                     <div class="row ">
@@ -171,7 +171,7 @@
                 @endforeach
             @else
                 <div class="alert-success">
-                    <h6>Your Have No Notifications</h6>
+                    <h6>Your Have No Offenses</h6>
                 </div>
             @endif
 

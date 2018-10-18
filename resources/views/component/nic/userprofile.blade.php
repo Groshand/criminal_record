@@ -11,57 +11,41 @@
 
                         <div class="form-group">
                             <label for="nic">NIC No </label>
-                            <input type="text" class="form-control" id=""  placeholder="" value="{{$user->id}}">
+                            <lable class="form-control">{{$user->id}}</lable>
                         </div>
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" class="form-control" id=""  value="{{$user->name}}">
+                            <lable class="form-control">{{$user->name}}</lable>
                         </div>
                         <div class="form-group">
                             <label for="oname">Other Names</label>
-                            <input type="text" class="form-control" id=""  value="{{$user->otherName}}">
+                            <lable class="form-control">{{$user->otherName}}</lable>
                         </div>
                         <div class="form-group">
                             <label for="gender">Gender</label>
-                            <div class="form-control">
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="gender" value="male" @if($user->gender=='male')
-                                        checked
-                                        @endif>Male
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="gender" value="female" @if($user->gender=='female')
-                                        checked
-                                        @endif>Female
-                                    </label>
-                                </div>
-                            </div>
+                            <lable class="form-control">{{$user->gender}}</lable>
                         </div>
                         <div class="form-group">
                             <label for="birthday">Birthday</label>
-                            <input type="date" class="form-control" value="{{$user->bDay}}" >
+                            <lable class="form-control">{{$user->bDay}}</lable>
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" value="{{$user->address}}">
+                            <lable class="form-control">{{$user->address}}</lable>
                         </div>
                         <div class="form-group">
                             <label for="phoneno">Phone No</label>
-                            <input type="text" class="form-control" value="{{$user->phoneNo}}">
+                            <lable class="form-control">{{$user->phoneNo}}</lable>
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$user->email}}">
+                            <lable class="form-control">{{$user->email}}</lable>
                         </div>
                         <div class="form-group">
                             <label for="job">Job</label>
-                            <input type="text" class="form-control" value="{{$user->job}}">
+                            <lable class="form-control">{{$user->job}}</lable>
                         </div>
 
-                        <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Submit</button>
 
                     @endif
                 </form>

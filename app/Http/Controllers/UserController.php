@@ -67,7 +67,7 @@ class UserController extends Controller
         if($user){
             return view('component/police/userprofile',['user'=>$user,'data'=>$data,'offense'=>$offense]);
         }else{
-            return view('component/police/searchuser');
+            return redirect()->back()->with('message', 'Enter Correct NIC Number');
         }
 
     }
@@ -105,7 +105,7 @@ class UserController extends Controller
                 }
             }
            session()->put('notification',$count);
-           return $this->userprofile();
+           return view('component/user/home');
         }else{
             return redirect()->back()->with('message','Enter Correct Email Or Password');
         }
@@ -115,14 +115,16 @@ class UserController extends Controller
 
         if(session()->has('notification')) {
             session()->forget('notification');
-        }//session::flush();
+        }Session::flush();
         return view('component/user/userlogin');
     }
     public function userprofile(){
         $user=User::find(Auth::user()->id);
         $offense=DB::table('offenses')->get();
+        $data=DB::table('Predefinedoffense')->get();
+
         if ($user && $offense){
-            return view('component/user/userprofile',['user'=>$user,'offense'=>$offense]);
+            return view('component/user/userprofile',['user'=>$user,'offense'=>$offense,'data'=>$data]);
         }else{
             return redirect()->back();
         }

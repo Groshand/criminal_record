@@ -16,7 +16,7 @@ class OffenseController extends Controller
     public function addOffense(Request $request,$id){
         $offense=new Offense();
         $offense->pDiscription=$request->input('discription');
-        $offense->pOffenseId=$request->input('types');
+        $offense->pOffenseId=$request->input('a');
         $offense->policeId=Auth::user()->id;
         $offense->userId=$id;
         $offense->coutOId=0;
@@ -26,7 +26,7 @@ class OffenseController extends Controller
         $saved=$offense->save();
       //  UserController::searchuserfrompolice($saved);
        if($saved){
-            return redirect()->back()->with('message','Offense Added Success');
+           return redirect()->route('searchuserfrompolice')->with('message1','Successfully Added Offense To The Who Has NIC No.  '.$id);
         }
         else{
             return redirect()->back()->with('message','Unsuccess');
@@ -50,15 +50,15 @@ class OffenseController extends Controller
         $offense=Offense::find($id);
         $accept=DB::table('offenses')
             ->where('id',$id)
-            ->update(['pOffenseId'=>$poffenseid,'cDiscription'=>$discription,'accept'=>$accept,'coutOId'=>Auth::user()->id]);
-        if ($offense->accept!='0' && session()->get('cnotification')){
+            ->update(['pOffenseId'=>$poffenseid,'cDiscription'=>$discription,'notification'=>1,'accept'=>$accept,'coutOId'=>Auth::user()->id]);
+        if ($offense->accept=='0' && session()->get('cnotification')){
                 $count=session()->get('cnotification');
                 $count=$count-1;
                 session()->put('cnotification',$count);
         }
         if ($accept){
-            return redirect()->back();
-        }
+            return redirect()->route('caalloffense')->with('message1','Successfully Update Offense Of The User Who Has NIC No.  '.$offense->userId);
+            }
         else{
             return redirect()->back()->with('message','Unsuccess');
         }
@@ -116,8 +116,21 @@ class OffenseController extends Controller
     }
     public function calloffense(){
         $offense=DB::table('offenses')->get();
+        $users=DB::table('users')->get();
+        $data=DB::table('Predefinedoffense')->get();
         if ($offense){
-            return view('component/cout/alloffense',['offense'=>$offense]);
+            return view('component/cout/alloffense',['offense'=>$offense,'users'=>$users,'data'=>$data]);
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+    public function caalloffense(){
+        $offense=DB::table('offenses')->get();
+        $users=DB::table('users')->get();
+        $data=DB::table('Predefinedoffense')->get();
+        if ($offense){
+            return view('component/cout/aalloffense',['offense'=>$offense,'users'=>$users,'data'=>$data]);
         }
         else{
             return redirect()->back();
@@ -144,6 +157,18 @@ class OffenseController extends Controller
             return redirect()->back();
         }
     }
+    public function uaalloffense(){
+        $offense=DB::table('offenses')->get();
+        $user=User::find(Auth::user()->id);
+        $data=DB::table('Predefinedoffense')->get();
+        if ($offense && $user){
+            return view('component/user/aalloffense',['offense'=>$offense,'user'=>$user,'data'=>$data]);
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+
     public function palloffense(){
         $offense=DB::table('offenses')->get();
         $users=DB::table('users')->get();
@@ -156,6 +181,19 @@ class OffenseController extends Controller
 
         if ($offense && $users && $data){
             return view('component/police/alloffense',['offense'=>$offense,'users'=>$users,'data'=>$data]);
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+    public function paalloffense(){
+        $offense=DB::table('offenses')->get();
+        $users=DB::table('users')->get();
+        $data=DB::table('Predefinedoffense')->get();
+
+
+        if ($offense && $users && $data){
+            return view('component/police/aalloffense',['offense'=>$offense,'users'=>$users,'data'=>$data]);
         }
         else{
             return redirect()->back();

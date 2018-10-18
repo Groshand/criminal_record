@@ -2,7 +2,7 @@
 @section('police')
 
 
-        <div class="container">
+        <div class="container border border-light px-5 pt-2 pb-5 rounded mt-md-3">
             @if(session()->has('message'))
                 <div>
                     {{session()->get('message')}}

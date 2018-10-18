@@ -33,18 +33,17 @@ class CoutController extends Controller
     }
     public function clogout(){
         Auth::logout();
-        if(session()->has('notification')) {
-            session()->forget('notification');
-        }
-        return view('component/cout/coutlogin');
+        Session::flush();
+        return redirect()->route('coutlogin');
     }
     public function searchuserfromcout(Request $request){
         $user=User::find($request->input('nic'));
         $offense=DB::table('offenses')->get();
+        $data=DB::table('Predefinedoffense')->get();
         if($user && $offense){
-            return view('component/cout/userprofile',['user'=>$user,'offense'=>$offense]);
+            return view('component/cout/userprofile',['user'=>$user,'data'=>$data,'offense'=>$offense]);
         }else{
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Enter Correct NIC Number');
         }
 
     }
@@ -52,8 +51,12 @@ class CoutController extends Controller
         $cout=Cout::find(Auth::user()->id);
         $user=User::find($cout->nic);
         $offense=DB::table('offenses')->get();
-        if($user && $cout && $offense){
-            return view('component/cout/owneprofile',['user'=>$user,'cout'=>$cout,'offense'=>$offense]);
+        $data=DB::table('Predefinedoffense')->get();
+        $user12=DB::table('users')->get();
+
+
+        if($user && $cout && $offense && $data){
+            return view('component/cout/owneprofile',['user'=>$user,'user12'=>$user12,'data'=>$data,'cout'=>$cout,'offense'=>$offense]);
         }else{
             return redirect()->back();
         }

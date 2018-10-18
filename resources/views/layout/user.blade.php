@@ -10,7 +10,7 @@
     <!--navbar start-->
 
     <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">User Blade</a>
+            <a class="navbar-brand" href="#">Find The Criminal</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -18,14 +18,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="uhome">
                             Home
                         </a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.victimsupport.org.uk/crime-info/types-crime">
-                            About Crime
+                        <a class="nav-link" href="uaalloffense" >
+                            All Offenses
                         </a>
                     </li>
                     <li class="nav-item dropdown" data-hover="dropdown">
@@ -48,12 +47,6 @@
                             <a class="dropdown-item list-group-item list-group-item-dark" href="https://archives.dailynews.lk/2001/pix/gov_gazette.html" target="https://archives.dailynews.lk/2001/pix/gov_gazette.html">Gazette</a>
                         </div>
                     </li>
-                    <div class="navbar-nav "  >
-                        <form class="form-inline" action="{{route('searchoffense')}}" method="post" >{{csrf_field()}}
-                            <input class="form-control " type="text" name="id" placeholder="Search by Offence ID " aria-label="Search">
-                            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </div>
                 </ul>
 
                 <ul class="navbar-nav my-1 ">

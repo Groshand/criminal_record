@@ -18,6 +18,7 @@ class CreateCoutsTable extends Migration
             $table->integer('nic');
             $table->string('password');
             $table->string('policeStation');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

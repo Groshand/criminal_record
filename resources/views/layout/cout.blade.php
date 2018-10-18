@@ -7,7 +7,7 @@
 @section('body')
     <!--navbar start-->
     <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Cout Officer Blade</a>
+                <a class="navbar-brand" href="#">Find The Criminal</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -19,9 +19,14 @@
                                 Home
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="caalloffense" >
+                                All Offenses
+                            </a>
+                        </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="http://moj.gov.lk/web/index.php?option=com_documents&view=documents&documents_type=2&Itemid=184&lang=en" target="http://moj.gov.lk/web/index.php?option=com_documents&view=documents&documents_type=2&Itemid=184&lang=en">
+                            <a class="nav-link" href="cactnlow" >
                                 Acts & Laws
                             </a>
                         </li>
@@ -38,8 +43,8 @@
                         </li>
                         <div class="navbar-nav"  >
                             <form class="form-inline" action="{{route('searchuserfromcout')}}" method="post" >{{csrf_field()}}
-                                <input class="form-control w-80" type="text" name="nic" placeholder="Search By NIC" aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                <input class="form-control w-80" type="text" name="nic" placeholder="User Search By NIC" aria-label="Search">
+                                <button class="btn  btn-outline-info my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
                     </ul>
@@ -63,6 +68,7 @@
                                 Profile
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link " href="{{route('clogout')}}">
                                 <i class="fa fa-sign-out">
