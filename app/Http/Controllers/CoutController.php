@@ -41,6 +41,7 @@ class CoutController extends Controller
                 }
             }
 
+            
             session()->put('cnotification',$count);
             return view('component/cout/home');
 
