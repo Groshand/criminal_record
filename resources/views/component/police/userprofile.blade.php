@@ -3,6 +3,7 @@
     <!--form start-->
     <div class="container">
         <h3>{{$user->name}}</h3>
+        @if($errors->first('id'))<div class="alert-danger  form-control">{{ $errors->first('id') }}</div>@endif
 
         <div class="container row ">
             <button type="button" class="btn btn-info col-md-4 round border border-light btn-lg" data-toggle="modal" data-target="#myModal1">Profile</button>
@@ -103,7 +104,7 @@
                                     @foreach($data as $types)
                                         <div class="radio">
                                             <label data-toggle="popover"  data-trigger="hover" data-content="{{$types->discription}}">
-                                                <input  type="radio"  name="a" value="{{$types->id}}">
+                                                <input  type="radio"  name="types" value="{{$types->id}}">
                                                 {{$types->type}}
                                             </label>
                                         </div>

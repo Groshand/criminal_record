@@ -111,7 +111,7 @@ Route::post('acceptoffense/{id}',[
     'as'=>'acceptoffense'
 ])->middleware('auth:cout');
 Route::get('cout', function () {
-    return view('layout/cout');
+    return view('component/cout/home');
 });
 Route::get('cowneprofile',[
     'uses'=>'CoutController@cowneprofile',

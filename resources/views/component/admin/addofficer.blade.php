@@ -15,18 +15,22 @@
             {{csrf_field()}}
             <div class="form-group">
                 <label for="nic">NIC No</label>
+                @if($errors->first('nic'))<div class="alert-danger form-control">{{ $errors->first('nic') }}</div>@endif
                 <input type="text" class="form-control" id=""  placeholder="Enter NIC no" name="nic">
             </div>
             <div class="form-group">
                 <label for="id">Officer ID</label>
+                @if($errors->first('id'))<div class="alert-danger form-control">{{ $errors->first('id') }}</div>@endif
                 <input type="text" class="form-control" id=""  placeholder="Enter Officer ID" name="id">
             </div>
             <div class="form-group">
-                <label for="password">Area</label>
+                <label >Area</label>
+                @if($errors->first('area'))<div class="alert-danger form-control">{{ $errors->first('area') }}</div>@endif
                 <input type="text" class="form-control" name="area"  placeholder="Enter area">
             </div>
             <div class="form-group">
                 <label for="gender">Officer</label>
+                @if($errors->first('cp'))<div class="alert-danger form-control">{{ $errors->first('cp') }}</div>@endif
                 <div class="form-control">
                     <div class="form-check-inline">
                         <label class="form-check-label">
@@ -40,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary col-md-2 mx-auto">Add</button>
+            <button type="submit" class="btn btn-outline-success col-md-2 mx-auto">Add Officer</button>
         </form>
     </div>
 

@@ -1,8 +1,26 @@
 @extends('layout.cout')
 @section('cout')
     <div class="container border border-light px-5 pt-2 pb-5 rounded mt-md-3">
+        @if(session()->has('message1'))
+            <div class="alert-primary alert">
+                {{session()->get('message1')}}
+            </div>
+        @endif
+        @if($errors->all())
+            <button data-toggle="modal" data-target="#a{{Session::get('validate')}}" class="col-md-12 btn alert-danger  alert " style="opacity: 0.6;
+  filter: alpha(opacity=60);">
+                <h4>There are some errors,</h4>
+                @foreach($errors->all() as $error)
+                    {{ $error}}<br>
+                @endforeach
+                <h5>Please click hear and Enter correcct values again</h5>
+            </button>
+        @endif
         <h3>ALL Notifications</h3>
-        <!--shapes-->
+
+
+
+    <!--shapes-->
         <div class="row p-3">
             <div class="form-group col-md-3">
                 <h5 class="">Rejected Offenses</h5>
@@ -171,6 +189,7 @@
                                                                         <input type="radio" class="form-check-input" name="accept" value="2">Reject
                                                                     </label>
                                                                 </div>
+
                                                             </div>
                                                         </div>
                                                         <div class="form-group">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Offense;
 use App\User;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Redirect;
 use Input;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -20,19 +22,41 @@ class UserController extends Controller
      */
     public function adduser(Request $request)
     {
+        $rules=['nic'=>'required|numeric|digits:9',
+            'name'=>'required',
+            'oname'=>'required',
+            'gender'=>'required',
+            'bday'=>'required',
+            'address'=>'required',
+            'phoneno'=>'required|numeric|digits:10',
+            'email'=>'required|email',
+            'job'=>'required',
+            'userimage'=>'required|image',
+            'fingerprint'=>'image|required'
+        ];
+        $msg=[
+
+
+        ];
+        $validator = Validator::make($request->all(),$rules,$msg);
+        if ($validator->fails()) {
+            return redirect('adduser')
+                ->withErrors($validator)
+                ->withInput();
+
+        }
         $user=new User();
-        $user->id=$request->input('nic');
-        $user->name=$request->input('name');
+        $nic=$user->id=$request->input('nic');
+        $name=$user->name=$request->input('name');
         $user->otherName=$request->input('oname');
-        $user->email=$request->input('email');
+        $email = $user->email=$request->input('email');
         $user->gender=$request->input('gender');
         $user->bDay=$request->input('bday');
         $user->job=$request->input('job');
         $user->address=$request->input('address');
         $user->phoneNo=$request->input('phoneno');
-        $user->password =123; //rand();
-       // mail($user->email,'password',$user->password);dd($user->password);
-        //start image upload
+        $pas=$user->password =12345;//rand(100000, 999999);
+
             $imagename=$request->input('nic');
             $filename= $imagename.'.jpg';//$file->getClientOriginalName();
             $request->file('userimage')->move(base_path().'/public/images/user/', $filename);
@@ -40,19 +64,44 @@ class UserController extends Controller
             $request->file('fingerprint')->move(base_path().'/public/images/fingerprint/', $filename);
             $user->fingerPrint=$filename;
         //end image upload
-        $user->password=bcrypt(123);
+        $user->password=bcrypt($pas);
+
+
+        Mail::send(['text' => 'post.mail'],[ 'name' => $name,'pas'=>$pas, 'nic'=>$nic], function ($message) use ($email)
+        {
+            $message->from('find.criminal.sl@gmail.com', 'Find The Criminal');
+            $message->to( $email ,'To Your');
+            $message->subject('Your Password');
+        });
+
 
         $saved=$user->save();
         if($saved){
-            return redirect()->back()->with('message','New user Added success');
+            return redirect('adduser')->with('message','New user Added Successfully');
         }
         else{
-            return redirect()->back()->with('message','Unsuccess');
+            return redirect()->back()->with('message','Unsuccessfully');
         }
 
     }
     public function searchuser(Request $request){
-        $user=User::find($request->input('nic'));
+        $rules=['id'=>'required|numeric|digits:9',
+
+        ];
+        $msg=[
+
+
+        ];
+        $validator = Validator::make($request->all(),$rules,$msg);
+        // dd('dd');
+        if ($validator->fails()) {
+            return redirect('adduser')
+                ->withErrors($validator)
+                ->withInput();
+
+        }
+
+        $user=User::find($request->input('id'));
         if($user){
             return view('component/nic/userprofile',['user'=>$user]);
         }else{
@@ -61,6 +110,17 @@ class UserController extends Controller
 
     }
     public function searchuserfrompolice(Request $request){
+/*
+        $rules=['nic'=>'required|numeric|size:9'];
+        $msg=[
+            'nic.size'=>'NIC must be 9 numbers','nic.numeric'=>'Please enter only numaric value'];
+        $validator = Validator::make($request->all(), $rules,$msg);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+*/
         $user=User::find($request->input('nic'));
         $offense=DB::table('offenses')->get();
         $data=DB::table('Predefinedoffense')->get();
@@ -72,10 +132,19 @@ class UserController extends Controller
 
     }
     public function searchbyfingerprint(Request $request){
+
+        $rules=['im'=>'required|image'];
+        $msg=['im.image'=>'The file is must be jpeg, png, bmp, gif, svg'];
+        $validator = Validator::make($request->all(),$rules,$msg);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $request->file('im')->move(base_path().'/public/images/input/', 'image.jpg');
         $img=new User();
         $data=$img->python();
-      //  Storage::delete('/public/images/input/image.jpg');
+      //Storage::delete('/public/images/input/image.jpg');
         if($data!=null){
             $data=preg_replace('/[^0-9]/','',$data);
 
@@ -92,9 +161,8 @@ class UserController extends Controller
         }else{
             return redirect()->back()->with('message', 'Enter Correct Finger Print');
         }
+    }
 
-
-}
     public function login(Request $request){
         $count=0;
         if(Auth::guard('web')->attempt(['email'=>$request->email,'password'=>$request->password])){
@@ -129,4 +197,5 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+
 }

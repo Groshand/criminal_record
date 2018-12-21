@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cout;
 use App\User;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,19 +16,37 @@ use Input;
 class CoutController extends Controller
 {
     public function coutlogin(Request $request){
+
+        $rules=['id'=>'required|numeric|digits:5','password'=>'required|min:3'];
+        $msg=[
+            'id.size'=>'id must be 5 Integer ',
+
+        ];
+       $validator = Validator::make($request->all(), $rules,$msg);
+       if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
         if(Auth::guard('cout')->attempt(['id'=>$request->id,'password'=>$request->password])){
             $count=0;
             $offense=DB::table('offenses')->get();
-            foreach ($offense as $ofns){
-                if ($ofns->accept==0){
-                    $count=$count+1;
+            if (count($offense)>0){
+                foreach ($offense as $ofns){
+                    if ($ofns->accept==0){
+                        $count=$count+1;
+                    }
                 }
             }
+
             session()->put('cnotification',$count);
-            return view('layout/cout');
+            return view('component/cout/home');
+
 
         }else{
-            return redirect()->back()->with('message','Incorrect Password or ID');
+            return redirect()->back()->with('message','Please Enter Correct ID And Password');
         }
 
     }
@@ -37,6 +56,17 @@ class CoutController extends Controller
         return redirect()->route('coutlogin');
     }
     public function searchuserfromcout(Request $request){
+
+        $rules=['nic'=>'required|Integer|size:9'];
+        $msg=[
+            'nic.size'=>'NIC must be 9 Integer','nic.Integer'=>'Please enter only numaric value'];
+        $validator = Validator::make($request->all(), $rules,$msg);
+        if ($validator->fails()) {
+            return redirect('cout')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $user=User::find($request->input('nic'));
         $offense=DB::table('offenses')->get();
         $data=DB::table('Predefinedoffense')->get();

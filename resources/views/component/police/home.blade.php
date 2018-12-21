@@ -8,7 +8,7 @@
             </div>
         @endif
 
-            <div class="row mt-10 h-50">
+            <div class="row mt-2 h-50 ">
                 <div class="col-md-12 ">
                     <div class="box14">
 
@@ -61,7 +61,7 @@
                 </div>
 
             </div>
-        <div class=" container  border border-light py-5 rounded ">
+        <div class=" container  border border-light py-2 mt-4 rounded ">
             <center>
                 <img class="img-fluid" src="images/cover/Sri_Lanka_Police_logo.png" alt="Chania" style="max-height: 230px;max-width: 170px;">
                 <h4>Our Mission </h4>

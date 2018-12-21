@@ -55,6 +55,7 @@
                             <form class="form-inline" action="{{route('searchpolice')}}" method="post" >{{csrf_field()}}
                                 <input class="form-control w-80" type="text" name="id" placeholder="Search By Officer ID" aria-label="Search">
                                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                                @if($errors->first('id'))<div class="alert-danger  form-control">{{ $errors->first('id') }}</div>@endif
                             </form>
                         </div>
                     </ul>

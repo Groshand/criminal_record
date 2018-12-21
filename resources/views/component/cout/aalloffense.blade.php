@@ -6,6 +6,16 @@
                 {{session()->get('message1')}}
             </div>
         @endif
+            @if($errors->all())
+                <button data-toggle="modal" data-target="#a{{Session::get('validate')}}" class="col-md-12 btn alert-danger  alert " style="opacity: 0.6;
+  filter: alpha(opacity=60);">
+                    <h4>There are some errors,</h4>
+                    @foreach($errors->all() as $error)
+                        {{ $error}}<br>
+                    @endforeach
+                    <h5>Please click hear and Enter correcct values again</h5>
+                </button>
+            @endif
         <h3>ALL Offenses</h3>
         <!--shapes-->
         <div class="row p-3">

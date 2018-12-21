@@ -15,7 +15,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="cout">
                                 Home
                             </a>
                         </li>
@@ -44,6 +44,8 @@
                         <div class="navbar-nav"  >
                             <form class="form-inline" action="{{route('searchuserfromcout')}}" method="post" >{{csrf_field()}}
                                 <input class="form-control w-80" type="text" name="nic" placeholder="User Search By NIC" aria-label="Search">
+                                @if($errors->first('nic'))<div class="alert-danger  form-control">{{ $errors->first('nic') }}</div>@endif
+
                                 <button class="btn  btn-outline-info my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>

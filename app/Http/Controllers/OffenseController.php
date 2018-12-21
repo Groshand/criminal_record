@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Offense;
 use App\User;
+use Validator;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,15 +15,24 @@ use Input;
 class OffenseController extends Controller
 {
     public function addOffense(Request $request,$id){
+
+        $rules=['types'=>'required','discription'=>'required|max:255'];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $offense=new Offense();
         $offense->pDiscription=$request->input('discription');
-        $offense->pOffenseId=$request->input('a');
+        $offense->pOffenseId=$request->input('types');
         $offense->policeId=Auth::user()->id;
         $offense->userId=$id;
         $offense->coutOId=0;
         $offense->notification=1;
         $offense->accept=0;
-        $offense->cDiscription=0;
+        $offense->cDiscription=null;
         $saved=$offense->save();
       //  UserController::searchuserfrompolice($saved);
        if($saved){
@@ -44,6 +54,16 @@ class OffenseController extends Controller
         }
     }
     public function acceptoffense(Request $request,$id){
+
+        $rules=['types'=>'required','discription'=>'required|max:255','accept'=>'required'];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            session()->put('validate',$id);
+            return redirect()->route('calloffense')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $discription=$request->input('discription');
         $poffenseid=$request->input('types');
         $accept=$request->input('accept');
@@ -57,7 +77,7 @@ class OffenseController extends Controller
                 session()->put('cnotification',$count);
         }
         if ($accept){
-            return redirect()->route('caalloffense')->with('message1','Successfully Update Offense Of The User Who Has NIC No.  '.$offense->userId);
+            return redirect()->route('calloffense')->with('message1','Successfully Update Offense Of The User Who Has NIC No.  '.$offense->userId);
             }
         else{
             return redirect()->back()->with('message','Unsuccess');
@@ -67,18 +87,6 @@ class OffenseController extends Controller
 
         $data=DB::table('Predefinedoffense')->get();
         $offense=Offense::find($id);
-
-       /* if ($offense->notification=='1'){
-            DB::table('offenses')
-                ->where('id',$id)
-                ->update(['notification'=>0]);
-            if(session()->get('notification')){
-                $count=session()->get('notification');
-                $count=$count-1;
-                session()->put('notification',$count);
-            }
-        }else{
-        }*/
 
         if ($offense && $data){
             return view('component/user/offense',['offense'=>$offense,'data'=>$data]);

@@ -19,6 +19,8 @@
             <div class="form-group">
                 <label >Search By NIC</label>
                 <input type="text" class="form-control" name="nic" placeholder="Enter NIC">
+                @if($errors->first('nic'))<div class="alert-danger  form-control">{{ $errors->first('nic') }}</div>@endif
+
             </div>
             <button type="submit" class="btn btn-primary col-md-2 mx-auto">Search</button>
         </form>
@@ -28,6 +30,7 @@
             <div class="form-group">
                 <label >Search By Finger Print</label>
                 <input class="form-control" type="file" id="im" name="im" >
+                @if($errors->first('im'))<div class="alert-danger  form-control">{{$errors->first('im')}}</div>@endif
             </div>
             <button type="submit" class="btn btn-primary col-md-2 mx-auto">Search</button>
         </form>

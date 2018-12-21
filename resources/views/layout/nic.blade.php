@@ -9,7 +9,7 @@
 
 
         <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Cout Officer Blade</a>
+            <a class="navbar-brand" href="#">NIC Office Blade</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="adduser">
                             Home
                         </a>
                     </li>
@@ -34,7 +34,8 @@
                     </li>
                     <div class="navbar-nav"  >
                         <form class="form-inline" action="{{route('searchuser')}}" method="post" >{{csrf_field()}}
-                            <input class="form-control w-80" type="text" name="nic" placeholder="Search By NIC" aria-label="Search">
+                            @if($errors->first('id'))<div class="alert-danger form-control">{{ $errors->first('id') }}</div>@endif
+                            <input class="form-control w-80" type="text" name="id" placeholder="Search By NIC" aria-label="Search">
                             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </div>

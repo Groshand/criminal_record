@@ -26,7 +26,7 @@
 <body>
 <div class="container-fluid">
     <section class="canvas-wrap">
-        <div class="canvas-content">
+        <div class="canvas-content" >
 
             @yield('body')
 
@@ -37,59 +37,50 @@
                     <footer class="footer">
                         <div class="container bottom_border">
                             <div class="row">
-                                <div class=" col-sm-4 col-md col-sm-4  col-12 col">
-                                    <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
-                                    <!--headin5_amrc-->
-                                    <p class="mb10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    <p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </p>
-                                    <p><i class="fa fa-phone"></i>  +91-9999878398  </p>
-                                    <p><i class="fa fa fa-envelope"></i> info@example.com  </p>
-
-
-                                </div>
-
-
-                                <div class=" col-sm-4 col-md  col-6 col">
-                                    <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
-                                    <!--headin5_amrc-->
-                                    <ul class="footer_ul_amrc">
-                                        <li><a href="http://kalarikendramdelhi.com">Image Rectoucing</a></li>
-                                        <li><a href="http://kalarikendramdelhi.com">Clipping Path</a></li>
-                                        <li><a href="http://kalarikendramdelhi.com">Hollow Man Montage</a></li>
-                                        <li><a href="http://kalarikendramdelhi.com">Ebay & Amazon</a></li>
-                                        <li><a href="http://kalarikendramdelhi.com">Hair Masking/Clipping</a></li>
-                                        <li><a href="http://kalarikendramdelhi.com">Image Cropping</a></li>
-                                    </ul>
-                                    <!--footer_ul_amrc ends here-->
-                                </div>
-
-
-                                <div class=" col-sm-4 col-md  col-6 col">
-                                    <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
-                                    <!--headin5_amrc-->
-                                    <ul class="footer_ul_amrc">
-                                        <li><a href="http://kalarikendramdelhi.com">Remove Background</a></li>
-                                        <li><a href="http://kalarikendramdelhi.com">Shadows & Mirror Reflection</a></li>
-                                        <li><a href="http://kalarikendramdelhi.com">Logo Design</a></li>
-                                        <li><a href="http://kalarikendramdelhi.com">Vectorization</a></li>
-                                        <li><a href="http://kalarikendramdelhi.com">Hair Masking/Clipping</a></li>
-                                        <li><a href="http://kalarikendramdelhi.com">Image Cropping</a></li>
-                                    </ul>
-                                    <!--footer_ul_amrc ends here-->
-                                </div>
 
 
                                 <div class=" col-sm-4 col-md  col-12 col">
-                                    <h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
-                                    <!--headin5_amrc ends here-->
+                                    <h5 class="headin5_amrc col_white_amrc pt2">NIC Department</h5>
+                                    <!--headin5_amrc-->
+                                    <ul class="footer_ul_amrc">
+                                        <li><a target="http://www.drp.gov.lk/Templates/home.page.english.Department-for-Registration-of-Persons.html" href="http://www.drp.gov.lk/Templates/home.page.english.Department-for-Registration-of-Persons.html">Official Site</a></li>
+                                        <li><a href="http://www.drp.gov.lk/Templates/Contact.us.english.Department-for-Registration-of-Persons.html" target="http://www.drp.gov.lk/Templates/Contact.us.english.Department-for-Registration-of-Persons.html">Contact</a></li>
 
-                                    <ul class="footer_ul2_amrc">
-                                        <li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-                                        <li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-                                        <li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
                                     </ul>
-                                    <!--footer_ul2_amrc ends here-->
+                                    <!--footer_ul_amrc ends here-->
                                 </div>
+                                <div class=" col-sm-4 col-md  col-6 col">
+                                    <h5 class="headin5_amrc col_white_amrc pt2">Police Department</h5>
+                                    <!--headin5_amrc-->
+                                    <ul class="footer_ul_amrc">
+                                        <li><a href="https://www.police.lk/" target="https://www.police.lk/">Official Site</a></li>
+                                        <li><a href="https://www.police.lk/index.php/tourist-police/1678-police-stations-telephone-directory" target="https://www.police.lk/index.php/tourist-police/1678-police-stations-telephone-directory">Contact No</a></li>
+                                    </ul>
+                                    <!--footer_ul_amrc ends here-->
+                                </div>
+
+
+                                <div class=" col-sm-4 col-md  col-16 col">
+                                    <h5 class="headin5_amrc col_white_amrc pt2">News</h5>
+                                    <!--headin5_amrc-->
+                                    <ul class="footer_ul_amrc">
+                                        <li><a  href="https://www.newsfirst.lk/latest-news/" target="https://www.newsfirst.lk/latest-news/">Lates News</a></li>
+                                        <li><a  href="https://www.w3newspapers.com/srilanka/" target="https://www.w3newspapers.com/srilanka/">News Papers</a></li>
+                                        <li><a href="https://archives.dailynews.lk/2001/pix/gov_gazette.html" target="https://archives.dailynews.lk/2001/pix/gov_gazette.html">Gazette</a></li>
+                                    </ul>
+                                    <!--footer_ul_amrc ends here-->
+                                </div>
+                                <div class=" col-sm-4 col-md  col-12 col">
+                                    <h5 class="headin5_amrc col_white_amrc pt2">About Find The Criminal</h5>
+                                    <!--headin5_amrc-->
+                                    <ul class="footer_ul_amrc">
+                                        This System maintain individual peopls Criminal Records
+                                    </ul>
+                                    <!--footer_ul_amrc ends here-->
+                                </div>
+
+
+
                             </div>
                         </div>
 
@@ -98,7 +89,7 @@
                             <h4 class="foote_bottom_ul_amrc">FIND THE CRIMINAL</h4>
 
                             <!--foote_bottom_ul_amrc ends here-->
-                            <p class="text-center">Copyright @2018 | Designed With by <a href="#">grdarshana@std.appsc.sab.ac.lk</a></p>
+                            <p class="text-center">Copyright @2018 | Designed by <a href="#">find.criminal.sl@gmail.com</a></p>
 
 
                             <!--social_footer_ul ends here-->
