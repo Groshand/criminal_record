@@ -8,7 +8,7 @@
         <div class="col-md-6 mx-auto " style="margin-top:10%;" >
             <form method="post" action="{{route('coutlogin')}}">{{csrf_field()}}
                 <div class="form-group">
-                    <h4>Cout Officer Login</h4>
+                    <h4>Court Officer Login</h4>
                     @if(session()->has('message'))
                         <div class="alert-danger alert">
                             {{session()->get('message')}}
@@ -16,7 +16,7 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Cout Officer ID</label>
+                    <label for="exampleInputEmail1">Court Officer ID</label>
                     <input type="text" name="id" class="form-control"   placeholder="Enter Officer's ID">
                     @if($errors->first('id'))<div class="alert-danger  form-control">{{ $errors->first('id') }}</div>@endif
                 </div>

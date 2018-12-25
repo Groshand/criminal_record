@@ -95,7 +95,7 @@
                             <p class="" >{{$offense->pDiscription}}</p>
                         </div>
                         <div class="form-group">
-                            <label >Cout Officer Discription</label>
+                            <label >Court Officer Discription</label>
                             <textarea class="form-control" name="discription" cols="30" rows="10" >{{$offense->cDiscription}}</textarea>
                         </div>
                     </div>

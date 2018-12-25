@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-check-inline">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="cp" value="cout">Cout
+                            <input type="radio" class="form-check-input" name="cp" value="cout">Court
                         </label>
                     </div>
                 </div>

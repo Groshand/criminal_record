@@ -264,7 +264,7 @@
                                                         <div class="card-body rounded border border-light">{{$ofns->pDiscription}}</div>
                                                     </div>
                                                     @if($ofns->cDiscription)
-                                                        <label >Cout Officer Discription</label>
+                                                        <label >Court Officer Discription</label>
                                                         <div class="card">
                                                             <div class="card-body rounded border border-light">{{$ofns->cDiscription}}</div>
                                                         </div>
@@ -292,7 +292,7 @@
             <div class="col-md-8">
                 @if($user)
                     <div class="form-group row">
-                        <label class="col-md-4">Cout ID </label>
+                        <label class="col-md-4">Court ID </label>
                         <input type="text" class="form-control col-md-8" value="{{$cout->id}}" placeholder="{{$cout->id}}"></input>
                     </div>
                     <div class="form-group row">
@@ -312,7 +312,7 @@
                         <input type="text" class="form-control col-md-8" value="{{$user->address}}" placeholder="{{$user->address}}"></input>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-4">Cout Officer Area </label>
+                        <label class="col-md-4">Court Officer Area </label>
                         <input type="text" class="form-control col-md-8" value="{{$cout->policeStation}}" placeholder="{{$cout->policeStation}}"></input>
                     </div>
                     <div class="form-group row">

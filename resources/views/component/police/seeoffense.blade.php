@@ -80,7 +80,7 @@
                             <p class="" >{{$offense->pDiscription}}</p>
                         </div>
                         <div class="form-group">@if($offense->cDiscription)
-                            <label >Cout Officer Discription</label>
+                            <label >Court Officer Discription</label>
                             <p class="">{{$offense->cDiscription}}</p>@endif
                         </div>
                     </div>

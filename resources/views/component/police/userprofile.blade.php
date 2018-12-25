@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="modal fade text-body" id="myModal2" role="dialog">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">ADD OFFENSE</h4>
@@ -99,7 +99,7 @@
                         <form method="post" action="{{route('addoffense',['id'=>$user->id] )}}">
                             {{csrf_field()}}
                             <div class="form-group">
-                                <label >Select type of offense</label>
+                                <h4 >Select type of offense</h4>
                                 @if(count($data)>0)
                                     @foreach($data as $types)
                                         <div class="radio">
@@ -110,12 +110,7 @@
                                         </div>
                                     @endforeach
                                 @endif
-                                <script>
-                                    $(document).ready(function(){
-                                        $('[data-toggle="popover"]').popover();
-                                    });
-                                </script>
-                                <textarea name="discription" id="" cols="30" rows="10"></textarea>
+                                <textarea name="discription" id="" cols="50" rows="10"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary col-md-2 mx-auto">Add</button>
                         </form>
@@ -216,7 +211,7 @@
                                                                     <div class="card-body rounded border border-light">{{$ofns->pDiscription}}</div>
                                                                 </div>
                                                                 @if($ofns->cDiscription)
-                                                                    <label >Cout Officer Discription</label>
+                                                                    <label >Court Officer Discription</label>
                                                                     <div class="card">
                                                                         <div class="card-body rounded border border-light">{{$ofns->cDiscription}}</div>
                                                                     </div>

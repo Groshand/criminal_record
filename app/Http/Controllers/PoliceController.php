@@ -85,7 +85,7 @@ class PoliceController extends Controller
     }
     public function searchpolice(Request $request){
 
-        $rules=['id'=>'required|Integer|size:5'];
+        $rules=['id'=>'required|numeric|digits:5'];
         $msg=[
             'id.size'=>'id must be 5 Integer ',
 

@@ -149,7 +149,7 @@
                                                                 <div class="card-body rounded border border-light">{{$ofns->pDiscription}}</div>
                                                             </div>
                                                             @if($ofns->cDiscription)
-                                                                <label >Cout Officer Discription</label>
+                                                                <label >Court Officer Discription</label>
                                                                 <div class="card">
                                                                     <div class="card-body rounded border border-light">{{$ofns->cDiscription}}</div>
                                                                 </div>

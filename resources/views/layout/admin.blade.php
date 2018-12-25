@@ -33,7 +33,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            Cout-Officers
+                            Court-Officers
                         </a>
                     </li>
                     <li class="nav-item">

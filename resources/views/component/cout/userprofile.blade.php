@@ -157,13 +157,15 @@
                                                                     <div class="form-group">
                                                                         <label for="gender">Catogory of Offense</label>
                                                                         @foreach($data as $data1)
-                                                                            <div class="form-control">
-                                                                                <div class="form-check-inline">
-                                                                                    <label class="form-check-label">
-                                                                                        <input type="radio" class="form-check-input" name="types" value="{{$data1->id}}">{{$data1->type}}
-                                                                                    </label>
+                                                                            @if($data1->id==$ofns->pOffenseId)
+                                                                                <div class="form-control">
+                                                                                    <div class="form-check-inline">
+                                                                                        <label class="form-check-label">
+                                                                                            {{$data1->type}}
+                                                                                        </label>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
+                                                                            @endif
                                                                         @endforeach
                                                                     </div>
 
@@ -175,7 +177,7 @@
                                                                         <p class="" >{{$ofns->pDiscription}}</p>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label >Cout Officer Discription</label>
+                                                                        <label >Court Officer Discription</label>
                                                                         <textarea class="form-control" name="discription" cols="30" rows="10" >{{$ofns->cDiscription}}</textarea>
                                                                     </div>
                                                                 </div>
@@ -268,7 +270,7 @@
                                                 <p class="" >{{$ofns->pDiscription}}</p>
                                             </div>
                                             <div class="form-group">
-                                                <label >Cout Officer Discription</label>
+                                                <label >Court Officer Discription</label>
                                                 <textarea class="form-control" name="discription" cols="30" rows="10" >{{$ofns->cDiscription}}</textarea>
                                             </div>
                                         </div>

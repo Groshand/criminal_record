@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group ">
                     @if($offense->cDiscription)
-                        <label >Cout Officer Discription</label>
+                        <label >Court Officer Discription</label>
                         <div class="card text-body">
                             <div class="card-body rounded border border-light">{{$offense->cDiscription}}</div>
                         </div>

@@ -33,14 +33,14 @@ class CoutController extends Controller
         if(Auth::guard('cout')->attempt(['id'=>$request->id,'password'=>$request->password])){
             $count=0;
             $offense=DB::table('offenses')->get();
-            if (count($offense)>0){
+           // if (count($offense)>0){
                 foreach ($offense as $ofns){
                     if ($ofns->accept==0){
                         $count=$count+1;
                     }
                 }
-            }
-            
+           // }
+
             session()->put('cnotification',$count);
             return view('component/cout/home');
 
@@ -57,9 +57,9 @@ class CoutController extends Controller
     }
     public function searchuserfromcout(Request $request){
 
-        $rules=['nic'=>'required|Integer|size:9'];
+        $rules=['nic'=>'required|numeric|digits:9'];
         $msg=[
-            'nic.size'=>'NIC must be 9 Integer','nic.Integer'=>'Please enter only numaric value'];
+            'nic.digits'=>'NIC must be 9 Integer','nic.numeric'=>'Please enter only numaric value'];
         $validator = Validator::make($request->all(), $rules,$msg);
         if ($validator->fails()) {
             return redirect('cout')

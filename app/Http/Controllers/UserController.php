@@ -110,8 +110,8 @@ class UserController extends Controller
 
     }
     public function searchuserfrompolice(Request $request){
-/*
-        $rules=['nic'=>'required|numeric|size:9'];
+
+        $rules=['nic'=>'required|numeric|digits:9'];
         $msg=[
             'nic.size'=>'NIC must be 9 numbers','nic.numeric'=>'Please enter only numaric value'];
         $validator = Validator::make($request->all(), $rules,$msg);
@@ -120,7 +120,7 @@ class UserController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-*/
+
         $user=User::find($request->input('nic'));
         $offense=DB::table('offenses')->get();
         $data=DB::table('Predefinedoffense')->get();

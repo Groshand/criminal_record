@@ -55,7 +55,7 @@ class OffenseController extends Controller
     }
     public function acceptoffense(Request $request,$id){
 
-        $rules=['types'=>'required','discription'=>'required|max:255','accept'=>'required'];
+        $rules=['discription'=>'required|max:255','accept'=>'required'];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             session()->put('validate',$id);
@@ -65,12 +65,11 @@ class OffenseController extends Controller
         }
 
         $discription=$request->input('discription');
-        $poffenseid=$request->input('types');
         $accept=$request->input('accept');
         $offense=Offense::find($id);
         $accept=DB::table('offenses')
             ->where('id',$id)
-            ->update(['pOffenseId'=>$poffenseid,'cDiscription'=>$discription,'notification'=>1,'accept'=>$accept,'coutOId'=>Auth::user()->id]);
+            ->update(['cDiscription'=>$discription,'notification'=>1,'accept'=>$accept,'coutOId'=>Auth::user()->id]);
         if ($offense->accept=='0' && session()->get('cnotification')){
                 $count=session()->get('cnotification');
                 $count=$count-1;

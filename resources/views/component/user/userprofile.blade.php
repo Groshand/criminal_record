@@ -98,8 +98,8 @@
                     <div class="modal-body">
                         @if(count($offense)>0)
                             @foreach($offense as $ofns)
-                                @if($ofns->userId==$user->id && $ofns->notification==1)
-                                    <button data-toggle="modal" data-target="#ab{{$ofns->id}}" class="col-md-12 btn btn-outline-info border-primary">
+                                @if($ofns->userId==$user->id && $ofns->accept==0)
+                                    <button data-toggle="modal" data-target="#ab{{$ofns->id}}" class="col-md-12 btn btn-outline-success border-primary">
 
                                         <div class="row">
                                             <div class="col-md-3">
@@ -172,7 +172,7 @@
                                                                             <div class="card-body rounded border border-light">{{$ofns->pDiscription}}</div>
                                                                         </div>
                                                                         @if($ofns->cDiscription)
-                                                                            <label >Cout Officer Discription</label>
+                                                                            <label >Court Officer Discription</label>
                                                                             <div class="card">
                                                                                 <div class="card-body rounded border border-light">{{$ofns->cDiscription}}</div>
                                                                             </div>
@@ -210,7 +210,7 @@
                         @if(count($offense)>0)
                             @foreach($offense as $ofns)
                                 @if($ofns->userId==$user->id)
-                                    <button data-toggle="modal" data-target="#abc{{$ofns->id}}" class="col-md-12 btn btn-outline-info border-primary @if($ofns->accept==0)btn-outline-success @elseif($ofns->accept==1)btn-outline-danger @elseif($ofns->accept==2) btn-outline-primary @endif">
+                                    <button data-toggle="modal" data-target="#abc{{$ofns->id}}" class="col-md-12 btn  border-primary @if($ofns->accept==0)btn-outline-success @elseif($ofns->accept==1)btn-outline-danger @elseif($ofns->accept==2) btn-outline-primary @endif">
 
                                         <div class="row">
                                             <div class="col-md-3">
@@ -283,7 +283,7 @@
                                                                     <div class="card-body rounded border border-light">{{$ofns->pDiscription}}</div>
                                                                 </div>
                                                                 @if($ofns->cDiscription)
-                                                                    <label >Cout Officer Discription</label>
+                                                                    <label >Court Officer Discription</label>
                                                                     <div class="card">
                                                                         <div class="card-body rounded border border-light">{{$ofns->cDiscription}}</div>
                                                                     </div>

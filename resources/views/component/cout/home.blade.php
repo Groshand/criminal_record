@@ -8,7 +8,7 @@
             </div>
         @endif
 
-        <div class="row ">
+        <div class="row mt-4 h-50">
             <div class="col-md-12 ">
                 <div class="box14">
 
@@ -60,7 +60,7 @@
             </div>
 
         </div>
-        <div class=" container  border  border-light py-5 rounded ">
+        <div class=" container  border mt-3 border-light py-5 rounded ">
             <center>
                 <img class="img-fluid" src="images/cover/cout_logo.png" alt="Chania" style="max-height: 230px;max-width: 170px;">
                 <h4>Our Mission </h4>
